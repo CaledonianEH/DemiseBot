@@ -65,7 +65,7 @@ public class DevMessageLogger {
 
         eb.setTitle("Error detected!");
         eb.setColor(new Color(242, 78, 78));
-        eb.setDescription(String.format("The bot %s has been marked as booting. You should be able to ignore this message."));
+        eb.setDescription(String.format("The bot %s has been marked as booting. You should be able to ignore this message.", jda.getSelfUser().getAsTag()));
         eb.setThumbnail(jda.getSelfUser().getAvatarUrl());
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
