@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import xyz.caledonian.DemiseBot;
 import xyz.caledonian.utils.PremadeEmbeds;
+import xyz.caledonian.utils.Utils;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -41,8 +42,8 @@ public class EvalCommand extends ListenerAdapter {
                     Member member = guild.getMember(user);
                     String eval = e.getOption("code").getAsString();
 
-                    if(!member.hasPermission(Permission.BAN_MEMBERS)){
-                        e.replyEmbeds(PremadeEmbeds.warning("You do not have enough permissions!").build()).setEphemeral(true).queue();
+                    if(!Utils.isDeveloper(user)){
+                        e.replyEmbeds(PremadeEmbeds.warning("Only bot developers have access to this command").build()).setEphemeral(true).queue();
                         return;
                     }
 
