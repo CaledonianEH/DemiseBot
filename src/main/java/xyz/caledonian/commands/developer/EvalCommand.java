@@ -1,5 +1,7 @@
 package xyz.caledonian.commands.developer;
 
+import lombok.SneakyThrows;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -12,15 +14,35 @@ import xyz.caledonian.utils.PremadeEmbeds;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import java.awt.*;
 
 public class EvalCommand extends ListenerAdapter {
 
     private DemiseBot main;
     private JDA jda;
 
+    private ScriptEngine engine;
+
     public EvalCommand(DemiseBot main, JDA jda){
         this.main = main;
         this.jda = jda;
+
+        engine = new ScriptEngineManager().getEngineByName("nashorn");
+
+        try{
+            engine.eval("var imports = new JavaImporter(" +
+                    "java.io," +
+                    "java.lang," +
+                    "java.util," +
+                    "Packages.net.dv8tion.jda.api," +
+                    "Packages.net.dv8tion.jda.api.entities," +
+                    "Packages.net.dv8tion.jda.api.entities.impl," +
+                    "Packages.net.dv8tion.jda.api.managers," +
+                    "Packages.net.dv8tion.jda.api.managers.impl," +
+                    "Packages.net.dv8tion.jda.api.utils);");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -43,16 +65,21 @@ public class EvalCommand extends ListenerAdapter {
                         return;
                     }
 
-                    ScriptEngine se = new ScriptEngineManager().getEngineByName("Nashorn");
-                    se.put("bot", main);
-                    se.put("event", e);
-                    se.put("jda", jda);
-                    se.put("guild", e.getGuild());
-                    se.put("channel", e.getChannel());
+                    engine.put("bot", main);
+                    engine.put("event", e);
+                    engine.put("jda", jda);
+                    engine.put("guild", e.getGuild());
+                    engine.put("channel", e.getChannel());
 
                     try{
-                        se.eval(eval);
-                        e.replyEmbeds(PremadeEmbeds.success("Successfully evaluated command", String.valueOf(se.eval(eval))).build()).queue();
+                        Object out = engine.eval(
+                                "(function() {" +
+                                        "with (imports) {" +
+                                        eval) +
+                                        "}" +
+                                        "})();";
+
+                        e.replyEmbeds(evalSuccess(eval, out == null ? "Nothing to return" : out.toString()).build()).queue();
                     }catch (Exception ex){
                         e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
                     }
@@ -60,5 +87,20 @@ public class EvalCommand extends ListenerAdapter {
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
         }
+    }
+
+
+    @SneakyThrows
+    private EmbedBuilder evalSuccess(String input, String output){
+        EmbedBuilder eb = new EmbedBuilder();
+
+        eb.setTitle("Successful evaluation");
+        eb.setColor(new Color(61, 216, 143));
+        eb.setDescription(String.format("**Input**\n```java\n%s\n```\n\n**Output**\n```java\n%s\n```",
+                input, output));
+        eb.setThumbnail("https://i.imgur.com/YPlowtt.png");
+        eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
+
+        return eb;
     }
 }
