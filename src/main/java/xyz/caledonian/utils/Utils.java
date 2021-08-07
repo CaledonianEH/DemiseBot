@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import xyz.caledonian.DemiseBot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
@@ -35,10 +36,13 @@ public class Utils {
     public static List<String> developers(){
         for(Object jsonArray : main.getConfig().getJSONObject("development")
                 .getJSONArray("developers")){
+            ArrayList<String> devs = new ArrayList<>();
 
-            developers().add(jsonArray.toString());
+            devs.add(jsonArray.toString());
+            List<String> finalDevs = devs;
+
+            return finalDevs;
         }
-
         return null;
     }
 }
