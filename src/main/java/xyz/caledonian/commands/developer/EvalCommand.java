@@ -70,8 +70,8 @@ public class EvalCommand extends ListenerAdapter {
                         Object out = engine.eval(
                                 "(function() {" +
                                         "with (imports) {" +
-                                        eval) + "}"
-                                        + "})();";
+                                        eval + "}"
+                                        + "})();");
 
                         //Object out = engine.eval(eval);
 
