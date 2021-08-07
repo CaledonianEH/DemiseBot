@@ -75,7 +75,7 @@ public class EvalCommand extends ListenerAdapter {
 
                         //Object out = engine.eval(eval);
 
-                        e.replyEmbeds(evalSuccess(eval, out == null ? "Empty return" : out.toString()).build()).queue();
+                        e.replyEmbeds(evalSuccess(eval, out.toString()).build()).queue();
                     }catch (Exception ex){
                         ex.printStackTrace();
                         e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
