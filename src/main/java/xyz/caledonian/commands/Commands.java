@@ -83,7 +83,7 @@ public class Commands extends ListenerAdapter {
         // Eval cmd
         commands.addCommands(new CommandData(
                         "eval", "Evaluate JavaScript code using the Nashorn engine."
-                ).addOptions(new OptionData(OptionType.STRING, "code", "DemiseBot 'bot', MessageReceivedEvent 'event', JDA 'jda', Guild 'guild', MessageChannel ''").setRequired(true))
+                ).addOptions(new OptionData(OptionType.STRING, "code", "DemiseBot bot, MessageReceivedEvent event, JDA jda, Guild guild, MessageChannel channel").setRequired(true))
         ).queue();
 
         commands.queue();

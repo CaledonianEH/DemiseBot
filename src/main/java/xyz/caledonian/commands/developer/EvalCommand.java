@@ -51,6 +51,7 @@ public class EvalCommand extends ListenerAdapter {
                     se.put("channel", e.getChannel());
 
                     try{
+                        se.eval(eval);
                         e.replyEmbeds(PremadeEmbeds.success("Successfully evaluated command", String.valueOf(se.eval(eval))).build()).queue();
                     }catch (Exception ex){
                         e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
