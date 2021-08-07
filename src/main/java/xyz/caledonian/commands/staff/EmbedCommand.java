@@ -68,6 +68,7 @@ public class EmbedCommand extends ListenerAdapter {
                             .addActionRow(SelectionMenu.create("embedCmdSel")
                                     .addOption("Announcement", "embedCmdAnn", Emoji.fromMarkdown("<a:blobDance:807671473060839475>"))
                                     .addOption("Update", "embedCmdUpd", Emoji.fromMarkdown("<a:blobDance:807671473060839475>"))
+                                    .setPlaceholder("Choose your announcement type")
                             .build()).setEphemeral(true).queue();
 
                     // Channel
