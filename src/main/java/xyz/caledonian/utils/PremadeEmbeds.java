@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import xyz.caledonian.DemiseBot;
+import xyz.caledonian.privmsgs.DevMessageLogger;
 
 import java.awt.*;
 

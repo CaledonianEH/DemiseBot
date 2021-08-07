@@ -15,6 +15,7 @@ import xyz.caledonian.commands.staff.EmbedCommand;
 import xyz.caledonian.commands.user.ReportCommand;
 import xyz.caledonian.commands.user.SuggestCommand;
 import xyz.caledonian.commands.Commands;
+import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.CustomEmotes;
 import xyz.caledonian.utils.PremadeEmbeds;
 import xyz.caledonian.utils.Utils;
@@ -57,6 +58,7 @@ public class DemiseBot {
 
         // Registering Events & Managers
         new Utils(this, jda);
+        new DevMessageLogger(this, jda);
         new CustomEmotes(this, jda);
         new PremadeEmbeds(this, jda);
         new SuggestCommand(this, jda);
@@ -66,6 +68,8 @@ public class DemiseBot {
         new EvalCommand(this, jda);
         //new TestCommand(this, jda);
         registerEvents();
+
+        DevMessageLogger.sendStartupLog();
     }
 
     private void registerEvents(){

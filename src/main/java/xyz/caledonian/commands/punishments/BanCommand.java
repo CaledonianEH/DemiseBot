@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.selections.SelectionMenu;
 import xyz.caledonian.DemiseBot;
+import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.PremadeEmbeds;
 
 import java.awt.*;
@@ -63,6 +64,7 @@ public class BanCommand extends ListenerAdapter {
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
+            DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
         }
     }
 }

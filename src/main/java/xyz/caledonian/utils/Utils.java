@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import xyz.caledonian.DemiseBot;
 
+import java.util.List;
+
 public class Utils {
 
     private static DemiseBot main;
@@ -27,5 +29,16 @@ public class Utils {
         }
 
         return false;
+    }
+
+    @SneakyThrows
+    public static List<String> developers(){
+        for(Object jsonArray : main.getConfig().getJSONObject("development")
+                .getJSONArray("developers")){
+
+            developers().add(jsonArray.toString());
+        }
+
+        return null;
     }
 }
