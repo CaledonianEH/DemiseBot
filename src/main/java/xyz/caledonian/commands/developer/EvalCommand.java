@@ -72,16 +72,15 @@ public class EvalCommand extends ListenerAdapter {
                     engine.put("channel", e.getChannel());
 
                     try{
-//                        Object out = engine.eval(
-//                                "(function() {" +
-//                                        "with (imports) {" +
-//                                        eval) +
-//                                        "}" +
-//                                        "})();";
+                        Object out = engine.eval(
+                                "(function() {" +
+                                        "with (imports) {" +
+                                        eval) + "}"
+                                        + "});";
 
-                        Object out = engine.eval(eval);
+                        //Object out = engine.eval(eval);
 
-                        e.replyEmbeds(evalSuccess(eval, out.toString()).build()).queue();
+                        e.replyEmbeds(evalSuccess(eval, out == null ? "Empty return" : out.toString()).build()).queue();
                     }catch (Exception ex){
                         ex.printStackTrace();
                         e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
