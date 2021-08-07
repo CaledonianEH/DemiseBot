@@ -63,8 +63,8 @@ public class DevMessageLogger {
     private static EmbedBuilder startup(){
         EmbedBuilder eb = new EmbedBuilder();
 
-        eb.setTitle("Error detected!");
-        eb.setColor(new Color(242, 78, 78));
+        eb.setTitle("Bot starting...");
+        eb.setColor(new Color(93, 245, 108));
         eb.setDescription(String.format("The bot %s has been marked as booting. You should be able to ignore this message.", jda.getSelfUser().getAsTag()));
         eb.setThumbnail(jda.getSelfUser().getAvatarUrl());
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");

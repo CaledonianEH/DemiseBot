@@ -42,10 +42,10 @@ public class EvalCommand extends ListenerAdapter {
                     Member member = guild.getMember(user);
                     String eval = e.getOption("code").getAsString();
 
-                    if(!Utils.isDeveloper(user)){
-                        e.replyEmbeds(PremadeEmbeds.warning("Only bot developers have access to this command").build()).setEphemeral(true).queue();
-                        return;
-                    }
+//                    if(!Utils.isDeveloper(user)){
+//                        e.replyEmbeds(PremadeEmbeds.warning("Only bot developers have access to this command").build()).setEphemeral(true).queue();
+//                        return;
+//                    }
 
                     ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 
