@@ -17,6 +17,7 @@ import xyz.caledonian.commands.user.SuggestCommand;
 import xyz.caledonian.commands.Commands;
 import xyz.caledonian.utils.CustomEmotes;
 import xyz.caledonian.utils.PremadeEmbeds;
+import xyz.caledonian.utils.Utils;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -55,6 +56,7 @@ public class DemiseBot {
         jda.getPresence().setActivity(Activity.competing(getConfig().getJSONObject("activity").getString("activity")));
 
         // Registering Events & Managers
+        new Utils(this, jda);
         new CustomEmotes(this, jda);
         new PremadeEmbeds(this, jda);
         new SuggestCommand(this, jda);

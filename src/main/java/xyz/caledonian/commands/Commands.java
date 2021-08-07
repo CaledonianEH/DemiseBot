@@ -14,6 +14,7 @@ import net.dv8tion.jda.api.interactions.components.selections.SelectionMenu;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import xyz.caledonian.DemiseBot;
 import xyz.caledonian.utils.PremadeEmbeds;
+import xyz.caledonian.utils.Utils;
 
 public class Commands extends ListenerAdapter {
 
@@ -110,6 +111,8 @@ public class Commands extends ListenerAdapter {
                             .addOption("Option 1", "o1", Emoji.fromMarkdown("<a:blobDance:807671473060839475>"))
                             .addOption("Option 2", "o2").build())
                             .queue();
+
+                    e.getChannel().sendMessage(String.format("[DEBUG] user is developer? %b", Utils.isDeveloper(e.getUser()))).queue();
                     break;
 
             }
