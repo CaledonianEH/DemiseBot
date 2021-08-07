@@ -75,11 +75,13 @@ public class EvalCommand extends ListenerAdapter {
 
                         //Object out = engine.eval(eval);
 
-                        e.replyEmbeds(evalSuccess(eval, out.toString()).build()).queue();
+                        e.replyEmbeds(evalSuccess(eval, out == null ? "Failed to find anything to return" : out.toString()).build()).queue();
                     }catch (Exception ex){
                         ex.printStackTrace();
                         e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
                     }
+
+                    EmbedBuilder eb = new EmbedBuilder(); eb.setDescription("Hello this is an embed"); e.getChannel().sendMessageEmbeds(eb.build()).queue();
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
