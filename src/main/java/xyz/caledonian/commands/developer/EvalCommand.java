@@ -21,28 +21,9 @@ public class EvalCommand extends ListenerAdapter {
     private DemiseBot main;
     private JDA jda;
 
-    private ScriptEngine engine;
-
     public EvalCommand(DemiseBot main, JDA jda){
         this.main = main;
         this.jda = jda;
-
-        engine = new ScriptEngineManager().getEngineByName("nashorn");
-
-        try{
-            engine.eval("var imports = new JavaImporter(" +
-                    "java.io," +
-                    "java.lang," +
-                    "java.util," +
-                    "Packages.net.dv8tion.jda.api," +
-                    "Packages.net.dv8tion.jda.api.entities," +
-                    "Packages.net.dv8tion.jda.api.entities.impl," +
-                    "Packages.net.dv8tion.jda.api.managers," +
-                    "Packages.net.dv8tion.jda.api.managers.impl," +
-                    "Packages.net.dv8tion.jda.api.utils);");
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
     }
 
     @Override
@@ -65,6 +46,8 @@ public class EvalCommand extends ListenerAdapter {
                         return;
                     }
 
+                    ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+
                     engine.put("bot", main);
                     engine.put("event", e);
                     engine.put("jda", jda);
@@ -72,11 +55,23 @@ public class EvalCommand extends ListenerAdapter {
                     engine.put("channel", e.getChannel());
 
                     try{
+
+                        engine.eval("var imports = new JavaImporter(" +
+                                "java.io," +
+                                "java.lang," +
+                                "java.util," +
+                                "Packages.net.dv8tion.jda.api," +
+                                "Packages.net.dv8tion.jda.api.entities," +
+                                "Packages.net.dv8tion.jda.api.entities.impl," +
+                                "Packages.net.dv8tion.jda.api.managers," +
+                                "Packages.net.dv8tion.jda.api.managers.impl," +
+                                "Packages.net.dv8tion.jda.api.utils);");
+
                         Object out = engine.eval(
                                 "(function() {" +
                                         "with (imports) {" +
                                         eval) + "}"
-                                        + "});";
+                                        + "})();";
 
                         //Object out = engine.eval(eval);
 
