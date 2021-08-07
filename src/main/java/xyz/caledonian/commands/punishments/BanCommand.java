@@ -51,10 +51,15 @@ public class BanCommand extends ListenerAdapter {
                         e.replyEmbeds(PremadeEmbeds.warning("You do not have enough permissions!").build()).setEphemeral(true).queue();
                         return;
                     }
+
+                    try{
+                        guild.ban(player.getUser(), 7).queue();
+                    }catch (Exception ex){
+                        e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).setEphemeral(true).queue();
+                    }
+
                     e.replyEmbeds(PremadeEmbeds.success(String.format("Successfully banned %s from the discord server!", player.getUser().getAsMention()), reason)
                     .build()).queue();
-
-                    guild.ban(player.getUser(), 7).queue();
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
