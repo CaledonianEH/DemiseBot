@@ -38,7 +38,7 @@ public class PremadeEmbeds {
 
         eb.setTitle("Wait a minute!");
         eb.setColor(new Color(242, 78, 78));
-        eb.setDescription(String.format("Hey, wait a minute! Are you using this thing right? Get support in our [main discord](%s)\n\n```diff\n- %s\n```", jda.getSelfUser().getName(),
+        eb.setDescription(String.format("Hey, wait a minute! Are you using this thing right? Get support in our [main discord](%s)\n\n```diff\n- %s\n```",
                 main.getConfig().getString("support-discord"),
                 cause));
         eb.setThumbnail("https://i.imgur.com/fGCMzxq.gif");

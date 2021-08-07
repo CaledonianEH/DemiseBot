@@ -80,8 +80,6 @@ public class EvalCommand extends ListenerAdapter {
                         ex.printStackTrace();
                         e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
                     }
-
-                    EmbedBuilder eb = new EmbedBuilder(); eb.setDescription("Hello this is an embed"); e.getChannel().sendMessageEmbeds(eb.build()).queue();
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
