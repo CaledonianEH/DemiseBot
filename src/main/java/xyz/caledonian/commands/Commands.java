@@ -80,6 +80,12 @@ public class Commands extends ListenerAdapter {
                         .addOptions(new OptionData(OptionType.STRING, "reason", "What should the reason be").setRequired(false))
         ).queue();
 
+        // Eval cmd
+        commands.addCommands(new CommandData(
+                        "eval", "Evaluate JavaScript code using the Nashorn engine."
+                ).addOptions(new OptionData(OptionType.STRING, "code", "DemiseBot 'bot', MessageReceivedEvent 'event', JDA 'jda', Guild 'guild', MessageChannel ''").setRequired(true))
+        ).queue();
+
         commands.queue();
     }
 

@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import org.json.JSONObject;
+import xyz.caledonian.commands.developer.EvalCommand;
 import xyz.caledonian.commands.punishments.BanCommand;
 import xyz.caledonian.commands.staff.EmbedCommand;
 import xyz.caledonian.commands.user.ReportCommand;
@@ -60,6 +61,7 @@ public class DemiseBot {
         new ReportCommand(this, jda);
         new EmbedCommand(this, jda);
         new BanCommand(this, jda);
+        new EvalCommand(this, jda);
         //new TestCommand(this, jda);
         registerEvents();
     }
@@ -70,6 +72,7 @@ public class DemiseBot {
         jda.addEventListener(new ReportCommand(this, jda));
         jda.addEventListener(new EmbedCommand(this, jda));
         jda.addEventListener(new BanCommand(this, jda));
+        jda.addEventListener(new EvalCommand(this, jda));
     }
 
     public JSONObject getConfig() throws IOException {
