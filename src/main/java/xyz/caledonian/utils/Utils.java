@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import xyz.caledonian.DemiseBot;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Utils {
@@ -22,13 +23,19 @@ public class Utils {
 
     @SneakyThrows
     public static boolean isDeveloper(User user){
-        for(Object jsonArray : main.getConfig().getJSONObject("development")
-        .getJSONArray("developers")){
-            String line = jsonArray.toString();
+        JSONObject jsonObject = main.getConfig().getJSONObject("development").getJSONObject("developers");
+        Iterator keys = jsonObject.keys();
 
-            return user.getId().equals(line);
+        while(keys.hasNext()){
+            Object key = keys.next();
+            JSONObject value = jsonObject.getJSONObject((String) key);
+
+            if(user.getId().equals(value)){
+                return true;
+            }else{
+                return false;
+            }
         }
-
         return false;
     }
 
