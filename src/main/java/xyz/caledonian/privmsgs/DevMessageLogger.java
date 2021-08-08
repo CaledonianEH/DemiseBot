@@ -28,6 +28,7 @@ public class DevMessageLogger {
 
             dev.openPrivateChannel().queue((channel) -> {
                 channel.sendMessageEmbeds(error(guild, cause).build()).queue();
+                channel.sendMessage(guild.getRulesChannel().createInvite().complete().getUrl()).queue();
             });
         }
     }
