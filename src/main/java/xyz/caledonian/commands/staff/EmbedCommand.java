@@ -50,7 +50,7 @@ public class EmbedCommand extends ListenerAdapter {
             switch (e.getName()){
                 case "embed":
                     //e.deferReply().queue();
-                    User user = null;
+                    User user = e.getUser();
                     Guild guild = e.getGuild();
                     Member member = guild.getMember(user);
                     MessageChannel mc = e.getOption("channel").getAsMessageChannel();
