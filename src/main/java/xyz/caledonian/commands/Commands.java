@@ -91,7 +91,6 @@ public class Commands extends ListenerAdapter {
         commands.addCommands(new CommandData(
                         "ticket", "Create, edit, modify, and moderate tickets"
                 ).addOptions(new OptionData(OptionType.STRING, "action", "What would you like to do")
-                .addChoice("create", 0)
                 .addChoice("close", 1)
                 .addChoice("add", 2)
                 .addChoice("remove", 3)
