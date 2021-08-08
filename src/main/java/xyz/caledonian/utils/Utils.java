@@ -24,10 +24,7 @@ public class Utils {
 
     @SneakyThrows
     public static boolean isDeveloper(User user){
-        for(String id : developers()){
-            return user.getId().equals(id);
-        }
-        return false;
+        return developers().contains(user.getId());
     }
 
     @SneakyThrows
