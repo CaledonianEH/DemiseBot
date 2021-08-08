@@ -87,8 +87,6 @@ public class Commands extends ListenerAdapter {
                 ).addOptions(new OptionData(OptionType.STRING, "code", "DemiseBot bot, MessageReceivedEvent event, JDA jda, Guild guild, MessageChannel channel").setRequired(true))
         ).queue();
 
-        commands.queue();
-
         // TICKETS COMMANDS *----------*----------*----------*
         commands.addCommands(new CommandData(
                         "ticket", "Create, edit, modify, and moderate tickets"
@@ -100,6 +98,8 @@ public class Commands extends ListenerAdapter {
                 .addChoice("channel", 4)
                 .setRequired(true))
         ).queue();
+
+        commands.queue();
     }
 
     @Override
