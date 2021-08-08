@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.selections.SelectionMenu;
 import xyz.caledonian.DemiseBot;
+import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.Formatting;
 import xyz.caledonian.utils.PremadeEmbeds;
 
@@ -49,7 +50,7 @@ public class EmbedCommand extends ListenerAdapter {
             switch (e.getName()){
                 case "embed":
                     //e.deferReply().queue();
-                    User user = e.getUser();
+                    User user = null;
                     Guild guild = e.getGuild();
                     Member member = guild.getMember(user);
                     MessageChannel mc = e.getOption("channel").getAsMessageChannel();
@@ -85,6 +86,7 @@ public class EmbedCommand extends ListenerAdapter {
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).setEphemeral(true).queue();
+            DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
         }
     }
 

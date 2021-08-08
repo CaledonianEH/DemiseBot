@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import xyz.caledonian.DemiseBot;
+import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.PremadeEmbeds;
 import xyz.caledonian.utils.Utils;
 
@@ -84,6 +85,7 @@ public class EvalCommand extends ListenerAdapter {
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
+            DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
         }
     }
 
