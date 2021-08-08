@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import xyz.caledonian.DemiseBot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,33 +24,22 @@ public class Utils {
 
     @SneakyThrows
     public static boolean isDeveloper(User user){
-        JSONObject jsonObject = main.getConfig().getJSONObject("development").getJSONObject("developers");
-        Iterator keys = jsonObject.keys();
-
-        while(keys.hasNext()){
-            Object key = keys.next();
-            JSONObject value = jsonObject.getJSONObject((String) key);
-
-            if(user.getId().equals(value)){
-                return true;
-            }else{
-                return false;
-            }
+        for(String id : developers()){
+            return user.getId().equals(id);
         }
         return false;
     }
 
     @SneakyThrows
     public static List<String> developers(){
-        for(Object jsonArray : main.getConfig().getJSONObject("development")
-                .getJSONArray("developers")){
-            ArrayList<String> devs = new ArrayList<>();
-
-            devs.add(jsonArray.toString());
-            List<String> finalDevs = devs;
-
-            return finalDevs;
+        ArrayList<String> listdata = new ArrayList<>();
+        JSONArray jsonArray = main.getConfig().getJSONObject("development").getJSONArray("developers");
+        if(jsonArray != null){
+            for (int i=0;i<jsonArray.length();i++){
+                listdata.add(jsonArray.getString(i));
+            }
         }
-        return null;
+
+        return listdata;
     }
 }
