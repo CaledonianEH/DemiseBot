@@ -27,8 +27,7 @@ public class DevMessageLogger {
             User dev = jda.getUserById(userId);
 
             dev.openPrivateChannel().queue((channel) -> {
-                channel.sendMessageEmbeds(error(guild, cause).build()).queue();
-                channel.sendMessage(guild.getRulesChannel().createInvite().complete().getUrl()).queue();
+                channel.sendMessage(getInviteUrl(guild)).setEmbeds(error(guild, cause).build()).queue();
             });
         }
     }
@@ -71,5 +70,13 @@ public class DevMessageLogger {
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
+    }
+
+    private static String getInviteUrl(Guild guild){
+        try{
+            return guild.getChannels().get(1).createInvite().complete().getUrl();
+        }catch (Exception ex){
+            return "<:errorIcon:873741190837698631> **Failed to create an invite link**";
+        }
     }
 }
