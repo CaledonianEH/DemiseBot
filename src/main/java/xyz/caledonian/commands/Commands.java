@@ -88,15 +88,6 @@ public class Commands extends ListenerAdapter {
         ).queue();
 
         // TICKETS COMMANDS *----------*----------*----------*
-        commands.addCommands(new CommandData(
-                        "ticket", "Create, edit, modify, and moderate tickets"
-                ).addOptions(new OptionData(OptionType.STRING, "action", "What would you like to do")
-                .addChoice("close", 1)
-                .addChoice("add", 2)
-                .addChoice("remove", 3)
-                .addChoice("channel", 4)
-                .setRequired(true))
-        ).queue();
 
         commands.queue();
     }
