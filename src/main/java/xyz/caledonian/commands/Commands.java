@@ -88,6 +88,10 @@ public class Commands extends ListenerAdapter {
         ).queue();
 
         // TICKETS COMMANDS *----------*----------*----------*
+        commands.addCommands(new CommandData(
+                        "ticket", "Create a support ticket, and directly interact with our team"
+        )).queue();
+
 
         commands.queue();
     }
