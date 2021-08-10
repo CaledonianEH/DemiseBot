@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
+import net.dv8tion.jda.api.interactions.components.Button;
 import net.dv8tion.jda.api.managers.ChannelManager;
 import xyz.caledonian.DemiseBot;
 import xyz.caledonian.utils.PremadeEmbeds;
@@ -18,6 +19,7 @@ public class TicketManager {
         this.jda = jda;
     }
 
+    @SneakyThrows
     public void createUserTicket(User user, SlashCommandEvent event, Guild guild){
         TextChannel commandChannel = event.getTextChannel();
         String nameFormat = String.format("ticket-%s", user.getName());
@@ -38,7 +40,9 @@ public class TicketManager {
         event.replyEmbeds(PremadeEmbeds.success(String.format("Successfully created your ticket! You can see it in <#%s>",
                 ticket.getId())).build()).queue();
 
-        ticket.sendMessage("@here").setEmbeds(PremadeEmbeds.success("Thank you for creating a ticket! Our team should be here as soon as possible.\n\nYou can help us out by informing what you're in need of!").build()).queue();
+        ticket.sendMessage("@here").setEmbeds(PremadeEmbeds.success("Thank you for creating a ticket! Our team should be here as soon as possible.\n\nYou can help us out by informing what you're in need of!").build())
+                .setActionRow(Button.danger("ticketCloseBtn", "Click to close this Ticket")
+                        .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))).queue();
     }
 
     @SneakyThrows
