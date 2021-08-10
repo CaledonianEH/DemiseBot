@@ -1,16 +1,22 @@
 package xyz.caledonian.commands.tickets;
 
+import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.components.Button;
 import xyz.caledonian.DemiseBot;
 import xyz.caledonian.managers.TicketManager;
 import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.PremadeEmbeds;
+
+import java.util.concurrent.TimeUnit;
 
 public class TicketCommand extends ListenerAdapter {
 
@@ -44,6 +50,28 @@ public class TicketCommand extends ListenerAdapter {
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
             DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
             ex.printStackTrace();
+        }
+    }
+
+    @SneakyThrows
+    @Override
+    public void onButtonClick(ButtonClickEvent e){
+        if(e.getComponentId().equalsIgnoreCase("ticketCloseBtn")){
+            e.getHook().editOriginalEmbeds(PremadeEmbeds.success("Closing ticket in two minutes. Please save anything you need.").build())
+                    .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
+                            .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
+                            .withDisabled(true)
+                    ).queue();
+
+            try {
+                TimeUnit.MINUTES.sleep(2);
+            }catch (Exception ex){
+                e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
+                DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
+                e.getTextChannel().delete();
+                return;
+            }
+            e.getTextChannel().delete();
         }
     }
 }
