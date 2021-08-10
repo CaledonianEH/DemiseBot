@@ -65,7 +65,7 @@ public class TicketCommand extends ListenerAdapter {
                             .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                             .withDisabled(true)
                     ).queue();
-            e.getTextChannel().delete().queue();
+            e.getTextChannel().delete().queue();//
         }
     }
 }
