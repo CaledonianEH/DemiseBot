@@ -29,22 +29,23 @@ public class Commands extends ListenerAdapter {
     }
 
     @SneakyThrows
-    private void setupCommands(){
+    public void setupCommands(){
         Guild guild = jda.getGuildById(main.getConfig().getJSONObject("development").getString("discord-id"));
 
         CommandListUpdateAction commands = guild.updateCommands();
+        CommandListUpdateAction globalCommands = jda.updateCommands();
 
-        commands.addCommands(new CommandData(
-                "testslash", "Testing slash commands ignore me"
-        )).queue();
+//        commands.addCommands(new CommandData(
+//                "testslash", "Testing slash commands ignore me"
+//        )).queue();
 
-        commands.addCommands(new CommandData(
+        globalCommands.addCommands(new CommandData(
                 "suggest", "Suggest a new feature or change to the guild, and let the rest of the guild vote on it!"
         ).addOptions(new OptionData(OptionType.STRING, "title", "Your suggestion in a nutshell.").setRequired(true))
                 .addOptions(new OptionData(OptionType.STRING, "suggestion", "Your suggestion. Please be detailed, and link pictures if possible").setRequired(true))).queue();
 
         // Report cmd
-        commands.addCommands(new CommandData(
+        globalCommands.addCommands(new CommandData(
                 "report", "Report a guild member for cheating or other reasons"
         ).addOptions(new OptionData(OptionType.STRING, "player", "The guild member's username you wish to report").setRequired(true))
                 .addOptions(new OptionData(OptionType.STRING, "reason", "The reason why you are reporting this player. Please be as detailed and through as possible.").setRequired(true))
@@ -82,7 +83,7 @@ public class Commands extends ListenerAdapter {
         ).queue();
 
         // Eval cmd
-        commands.addCommands(new CommandData(
+        globalCommands.addCommands(new CommandData(
                         "eval", "Evaluate JavaScript code using the Nashorn engine."
                 ).addOptions(new OptionData(OptionType.STRING, "code", "DemiseBot bot, MessageReceivedEvent event, JDA jda, Guild guild, MessageChannel channel").setRequired(true))
         ).queue();
@@ -94,6 +95,7 @@ public class Commands extends ListenerAdapter {
 
 
         commands.queue();
+        globalCommands.queue();
     }
 
     @Override

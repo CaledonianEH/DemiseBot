@@ -96,4 +96,13 @@ public class DemiseBot {
         }
         return null;
     }
+
+    private void updateCommands(){
+        Commands commands = new Commands(this, jda);
+        commands.setupCommands();
+    }
+
+    private void updateStatus(String activity){
+        jda.getPresence().setActivity(Activity.competing(activity));
+    }
 }
