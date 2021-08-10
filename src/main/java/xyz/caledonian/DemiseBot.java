@@ -1,10 +1,14 @@
 package xyz.caledonian;
 
 import lombok.SneakyThrows;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Emoji;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.interactions.components.Button;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
@@ -97,12 +101,29 @@ public class DemiseBot {
         return null;
     }
 
-    private void updateCommands(){
+    public void updateCommands(){
         Commands commands = new Commands(this, jda);
         commands.setupCommands();
     }
 
-    private void updateStatus(String activity){
+    public void updateStatus(String activity){
         jda.getPresence().setActivity(Activity.competing(activity));
+    }
+
+    @SneakyThrows
+    public void sendTicketChannel(MessageChannel channel){
+        EmbedBuilder eb = new EmbedBuilder();
+
+        eb.setTitle("Demise Tickets");
+        eb.setDescription("Click the button to create a ticket, and get in contact with our support team. Make sure to provide a reason when it is first created!" +
+                "\n\n**Reasons to create a ticket**\n- Applications\n- Schedule unavailability notices\n- Report bugs\n");
+
+        eb.setThumbnail(jda.getSelfUser().getAvatarUrl());
+        eb.setFooter(getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
+
+        channel.sendMessageEmbeds(eb.build())
+                .setActionRow(Button.primary("ticketCreateBtn", "Create a ticket")
+                .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create")))
+                ).queue();
     }
 }

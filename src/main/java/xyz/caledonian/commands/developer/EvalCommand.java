@@ -50,7 +50,7 @@ public class EvalCommand extends ListenerAdapter {
 
                     ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 
-                    engine.put("bot", main);
+                    engine.put("main", main);
                     engine.put("event", e);
                     engine.put("jda", jda);
                     engine.put("guild", e.getGuild());
