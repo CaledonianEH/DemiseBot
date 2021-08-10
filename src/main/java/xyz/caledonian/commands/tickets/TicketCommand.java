@@ -59,12 +59,14 @@ public class TicketCommand extends ListenerAdapter {
         System.out.println("button press");
         System.out.println(e.getComponentId());
         if(e.getComponentId().equalsIgnoreCase("ticketCloseBtn")){
+            e.deferEdit().queue();
             e.getHook().editOriginalEmbeds(PremadeEmbeds.success("Currently closing the ticket... please wait").build())
                     .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
                             .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                             .withDisabled(true)
                     ).queue();
             e.getTextChannel().delete();
+            e.reply("hi").queue();
         }
     }
 }
