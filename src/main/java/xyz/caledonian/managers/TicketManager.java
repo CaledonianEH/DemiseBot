@@ -47,10 +47,10 @@ public class TicketManager {
                 ticket.getId())).build()).queue();
 
         ticket.sendMessage("@here").setEmbeds(PremadeEmbeds.success("Thank you for creating a ticket! Our team should be here as soon as possible.\n\nYou can help us out by informing what you're in need of!").build())
-                .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
+                .setActionRow(Button.secondary("ticketCloseBtn", "Close ticket")
                         .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                         ).queue();
-        // .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close"))
+        return;
     }
 
     @SneakyThrows
