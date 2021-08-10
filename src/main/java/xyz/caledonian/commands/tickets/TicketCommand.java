@@ -57,20 +57,11 @@ public class TicketCommand extends ListenerAdapter {
     @Override
     public void onButtonClick(ButtonClickEvent e){
         if(e.getComponentId().equalsIgnoreCase("ticketCloseBtn")){
-            e.getHook().editOriginalEmbeds(PremadeEmbeds.success("Closing ticket in two minutes. Please save anything you need.").build())
+            e.getHook().editOriginalEmbeds(PremadeEmbeds.success("Currently closing the ticket... please wait").build())
                     .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
                             .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                             .withDisabled(true)
                     ).queue();
-
-            try {
-                TimeUnit.MINUTES.sleep(2);
-            }catch (Exception ex){
-                e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
-                DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
-                e.getTextChannel().delete();
-                return;
-            }
             e.getTextChannel().delete();
         }
     }
