@@ -20,10 +20,10 @@ public class TicketManager {
 
     public void createUserTicket(User user, SlashCommandEvent event, Guild guild){
         TextChannel commandChannel = event.getTextChannel();
-        String nameFormat = String.format("ticket-%s", user.getAsTag());
+        String nameFormat = String.format("ticket-%s", user.getName());
 
-        if(guild.getCategoriesByName(getTicketCategoryString(), true).size() > 0){
-            commandChannel.sendMessageEmbeds(PremadeEmbeds.warning("The requested ticket channel was not found.").build()).queue();
+        if(!(guild.getCategoriesByName(getTicketCategoryString(), true).size() > 0)){
+            event.replyEmbeds(PremadeEmbeds.warning("The requested ticket channel was not found.").build()).queue();
             return;
         }
 
