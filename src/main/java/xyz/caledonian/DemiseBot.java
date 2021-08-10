@@ -12,9 +12,11 @@ import org.json.JSONObject;
 import xyz.caledonian.commands.developer.EvalCommand;
 import xyz.caledonian.commands.punishments.BanCommand;
 import xyz.caledonian.commands.staff.EmbedCommand;
+import xyz.caledonian.commands.tickets.TicketCommand;
 import xyz.caledonian.commands.user.ReportCommand;
 import xyz.caledonian.commands.user.SuggestCommand;
 import xyz.caledonian.commands.Commands;
+import xyz.caledonian.managers.TicketManager;
 import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.CustomEmotes;
 import xyz.caledonian.utils.PremadeEmbeds;
@@ -28,6 +30,7 @@ import java.util.Objects;
 public class DemiseBot {
 
     private JDA jda;
+    private TicketManager ticket;
 
     public static void main(String[] args){
         new DemiseBot().startBot();
@@ -58,6 +61,7 @@ public class DemiseBot {
 
         // Registering Events & Managers
         new Utils(this, jda);
+        ticket = new TicketManager(this, jda);
         new DevMessageLogger(this, jda);
         new CustomEmotes(this, jda);
         new PremadeEmbeds(this, jda);
@@ -66,6 +70,7 @@ public class DemiseBot {
         new EmbedCommand(this, jda);
         new BanCommand(this, jda);
         new EvalCommand(this, jda);
+        new TicketCommand(this, jda, ticket);
         //new TestCommand(this, jda);
         registerEvents();
 
@@ -79,6 +84,7 @@ public class DemiseBot {
         jda.addEventListener(new EmbedCommand(this, jda));
         jda.addEventListener(new BanCommand(this, jda));
         jda.addEventListener(new EvalCommand(this, jda));
+        jda.addEventListener(new TicketCommand(this, jda, ticket));
     }
 
     public JSONObject getConfig() throws IOException {

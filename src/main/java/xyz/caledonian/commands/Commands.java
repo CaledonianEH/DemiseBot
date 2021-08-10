@@ -25,7 +25,7 @@ public class Commands extends ListenerAdapter {
         this.main = main;
         this.jda = jda;
 
-        setupCommands();
+        //setupCommands();
     }
 
     @SneakyThrows
