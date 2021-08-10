@@ -43,6 +43,7 @@ public class TicketCommand extends ListenerAdapter {
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
             DevMessageLogger.sendErrorLog(e.getGuild(), ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }
