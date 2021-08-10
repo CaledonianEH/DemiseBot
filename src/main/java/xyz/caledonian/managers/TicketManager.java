@@ -28,6 +28,12 @@ public class TicketManager {
             event.replyEmbeds(PremadeEmbeds.warning("The requested ticket channel was not found.").build()).queue();
             return;
         }
+        for(GuildChannel channel : guild.getChannels()){
+            if(channel.getName().equalsIgnoreCase(nameFormat)){
+                event.replyEmbeds(PremadeEmbeds.warning("You already have a ticket open. Please close that one first.").build()).queue();
+                return;
+            }
+        }
 
         TextChannel ticket = guild.createTextChannel(nameFormat, guild.getCategoryById(getTicketCategoryString())).complete();
         ChannelManager ticketManager = ticket.getManager().putPermissionOverride(guild.getMember(user), 3072L, 8192L)
