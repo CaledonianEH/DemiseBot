@@ -56,6 +56,8 @@ public class TicketCommand extends ListenerAdapter {
     @SneakyThrows
     @Override
     public void onButtonClick(ButtonClickEvent e){
+        System.out.println("button press");
+        System.out.println(e.getComponentId());
         if(e.getComponentId().equalsIgnoreCase("ticketCloseBtn")){
             e.getHook().editOriginalEmbeds(PremadeEmbeds.success("Currently closing the ticket... please wait").build())
                     .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
