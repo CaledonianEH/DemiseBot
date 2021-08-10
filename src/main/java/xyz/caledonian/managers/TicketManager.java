@@ -22,12 +22,12 @@ public class TicketManager {
         TextChannel commandChannel = event.getTextChannel();
         String nameFormat = String.format("ticket-%s", user.getName());
 
-        if(!(guild.getCategoriesByName(getTicketCategoryString(), true).size() > 0)){
+        if(guild.getCategoryById(getTicketCategoryString()) == null){
             event.replyEmbeds(PremadeEmbeds.warning("The requested ticket channel was not found.").build()).queue();
             return;
         }
 
-        TextChannel ticket = guild.createTextChannel(nameFormat, guild.getCategoriesByName(getTicketCategoryString(), true).get(0)).complete();
+        TextChannel ticket = guild.createTextChannel(nameFormat, guild.getCategoryById(getTicketCategoryString())).complete();
         ChannelManager ticketManager = ticket.getManager().putPermissionOverride(guild.getMember(user), 3072L, 8192L)
                 .putPermissionOverride(guild.getRolesByName("@everyone", true).get(0), 0L, 1024L);
         if(guild.getRoleById(getSupportRoleString()) != null){
