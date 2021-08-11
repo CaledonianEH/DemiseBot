@@ -83,7 +83,7 @@ public class TicketManager {
         event.getHook().sendMessageEmbeds(PremadeEmbeds.success(String.format("Successfully created your ticket! You can see it in <#%s>",
                 ticket.getId())).build()).setEphemeral(true).queue();
 
-        ticket.sendMessage("@here").setEmbeds(PremadeEmbeds.success("Thank you for creating a ticket! Our team should be here as soon as possible.\n\nYou can help us out by informing what you're in need of!").build())
+        ticket.sendMessage(user.getAsMention()).setEmbeds(PremadeEmbeds.success("Thank you for creating a ticket! Our team should be here as soon as possible.\n\nYou can help us out by informing what you're in need of!").build())
                 .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
                         .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                 ).queue();

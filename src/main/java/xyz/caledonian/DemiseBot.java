@@ -20,6 +20,7 @@ import xyz.caledonian.commands.tickets.TicketCommand;
 import xyz.caledonian.commands.user.ReportCommand;
 import xyz.caledonian.commands.user.SuggestCommand;
 import xyz.caledonian.commands.Commands;
+import xyz.caledonian.listener.GuildJoinListener;
 import xyz.caledonian.managers.TicketManager;
 import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.CustomEmotes;
@@ -76,6 +77,7 @@ public class DemiseBot {
         new BanCommand(this, jda);
         new EvalCommand(this, jda);
         new TicketCommand(this, jda, ticket);
+        new GuildJoinListener(this, jda);
         //new TestCommand(this, jda);
         registerEvents();
 
@@ -90,6 +92,7 @@ public class DemiseBot {
         jda.addEventListener(new BanCommand(this, jda));
         jda.addEventListener(new EvalCommand(this, jda));
         jda.addEventListener(new TicketCommand(this, jda, ticket));
+        jda.addEventListener(new GuildJoinListener(this, jda));
     }
 
     public JSONObject getConfig() throws IOException {
@@ -109,6 +112,10 @@ public class DemiseBot {
 
     public void updateStatus(String activity){
         jda.getPresence().setActivity(Activity.competing(activity));
+    }
+
+    public void shutdown(){
+        jda.shutdown();
     }
 
     @SneakyThrows
