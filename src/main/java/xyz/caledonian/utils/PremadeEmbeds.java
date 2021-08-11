@@ -27,7 +27,7 @@ public class PremadeEmbeds {
         eb.setDescription(String.format("Looks like %s has encountered an unknown error. Please report this to the developers in our [main discord](%s)\n\n```diff\n- %s\n```", jda.getSelfUser().getName(),
                 main.getConfig().getString("support-discord"),
                 cause));
-        eb.setThumbnail("https://i.imgur.com/fGCMzxq.gif");
+        eb.setThumbnail("https://i.imgur.com/LzRqVIy.png");
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
@@ -42,7 +42,7 @@ public class PremadeEmbeds {
         eb.setDescription(String.format("Hey, wait a minute! Are you using this thing right? Get support in our [main discord](%s)\n\n```diff\n- %s\n```",
                 main.getConfig().getString("support-discord"),
                 cause));
-        eb.setThumbnail("https://i.imgur.com/fGCMzxq.gif");
+        eb.setThumbnail("https://i.imgur.com/LzRqVIy.png");
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
@@ -56,7 +56,7 @@ public class PremadeEmbeds {
         eb.setColor(new Color(61, 216, 143));
         eb.setDescription(String.format("%s",
                 cause));
-        eb.setThumbnail("https://i.imgur.com/YPlowtt.png");
+        eb.setThumbnail("https://i.imgur.com/fKjkvDX.png");
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
@@ -70,7 +70,7 @@ public class PremadeEmbeds {
         eb.setColor(new Color(61, 216, 143));
         eb.setDescription(String.format("%s\n\n```diff\n+ %s\n```",
                 mesage, cause));
-        eb.setThumbnail("https://i.imgur.com/YPlowtt.png");
+        eb.setThumbnail("https://i.imgur.com/fKjkvDX.png");
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;

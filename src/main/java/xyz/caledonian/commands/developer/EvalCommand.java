@@ -98,7 +98,7 @@ public class EvalCommand extends ListenerAdapter {
         eb.setColor(new Color(61, 216, 143));
         eb.setDescription(String.format("**Input**\n```java\n%s\n```\n\n**Output**\n```java\n%s\n```",
                 input, output));
-        eb.setThumbnail("https://i.imgur.com/YPlowtt.png");
+        eb.setThumbnail("https://i.imgur.com/fKjkvDX.png");
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
