@@ -73,11 +73,6 @@ public class TicketCommand extends ListenerAdapter {
                     .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                     .withDisabled(true)
             ).queue();
-
-            e.getInteraction().editButton(Button.success("ticketCloseBtn", "Create a ticket")
-                    .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
-                    .withDisabled(false)
-            ).queueAfter(5, TimeUnit.SECONDS);
         }
     }
 }

@@ -10,6 +10,8 @@ import net.dv8tion.jda.api.managers.ChannelManager;
 import xyz.caledonian.DemiseBot;
 import xyz.caledonian.utils.PremadeEmbeds;
 
+import java.util.concurrent.TimeUnit;
+
 public class TicketManager {
 
     private DemiseBot main;
@@ -56,16 +58,23 @@ public class TicketManager {
 
     @SneakyThrows
     public void createUserTicketButton(User user, ButtonClickEvent event, Guild guild){
+
+        event.getInteraction().editButton(Button.success("ticketCloseBtn", "Create a ticket")
+                .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
+                .withDisabled(false)
+        ).queueAfter(5, TimeUnit.SECONDS);
+
+
         TextChannel commandChannel = event.getTextChannel();
         String nameFormat = String.format("ticket-%s", user.getName());
 
         if(guild.getCategoryById(getTicketCategoryString()) == null){
-            event.replyEmbeds(PremadeEmbeds.warning("The requested ticket channel was not found.").build()).queue();
+            event.replyEmbeds(PremadeEmbeds.warning("The requested ticket channel was not found.").build()).setEphemeral(true).queue();
             return;
         }
         for(GuildChannel channel : guild.getChannels()){
             if(channel.getName().equalsIgnoreCase(nameFormat)){
-                event.replyEmbeds(PremadeEmbeds.warning("You already have a ticket open. Please close that one first.").build()).queue();
+                event.replyEmbeds(PremadeEmbeds.warning("You already have a ticket open. Please close that one first.").build()).setEphemeral(true).queue();
                 return;
             }
         }
@@ -79,7 +88,7 @@ public class TicketManager {
         ticketManager.queue();
 
         event.replyEmbeds(PremadeEmbeds.success(String.format("Successfully created your ticket! You can see it in <#%s>",
-                ticket.getId())).build()).queue();
+                ticket.getId())).build()).setEphemeral(true).queue();
 
         ticket.sendMessage("@here").setEmbeds(PremadeEmbeds.success("Thank you for creating a ticket! Our team should be here as soon as possible.\n\nYou can help us out by informing what you're in need of!").build())
                 .setActionRow(Button.danger("ticketCloseBtn", "Close ticket")
