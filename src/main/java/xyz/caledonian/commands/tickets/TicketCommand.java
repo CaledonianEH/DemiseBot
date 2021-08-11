@@ -69,6 +69,7 @@ public class TicketCommand extends ListenerAdapter {
             e.getTextChannel().delete().queue();//
         }else if(e.getComponentId().equals("ticketCreateBtn")){
             ticket.createUserTicketButton(e.getUser(), e, e.getGuild());
+            System.out.println("[DEBUG] ticket creation button triggered");
         }
     }
 }
