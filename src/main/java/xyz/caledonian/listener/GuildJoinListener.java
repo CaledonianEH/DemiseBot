@@ -55,6 +55,7 @@ public class GuildJoinListener extends ListenerAdapter {
         eb.setDescription("Hey, welcome to the guild! You can view all of our commands using slash commands.");
         eb.addField("Total members", String.format("%s including bots", guild.getMembers().size()), true);
         eb.setColor(new Color(61, 216, 143));
+        eb.setThumbnail(user.getAvatarUrl());
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
@@ -68,6 +69,7 @@ public class GuildJoinListener extends ListenerAdapter {
         eb.setDescription("Thanks for stopping by!");
         eb.addField("Total members", String.format("%s including bots", guild.getMembers().size()), true);
         eb.setColor(new Color(242, 78, 78));
+        eb.setThumbnail(user.getAvatarUrl());
         eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         return eb;
