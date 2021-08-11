@@ -69,10 +69,6 @@ public class TicketCommand extends ListenerAdapter {
             e.getTextChannel().delete().queue();//
         }else if(e.getComponentId().equals("ticketCreateBtn")){
             ticket.createUserTicketButton(e.getUser(), e, e.getGuild());
-            e.getInteraction().editButton(Button.primary("ticketCloseBtn", "Ticket created!")
-                    .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
-                    .withDisabled(true)
-            ).queue();
         }
     }
 }

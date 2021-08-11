@@ -58,13 +58,6 @@ public class TicketManager {
 
     @SneakyThrows
     public void createUserTicketButton(User user, ButtonClickEvent event, Guild guild){
-
-        event.getInteraction().editButton(Button.success("ticketCloseBtn", "Create a ticket")
-                .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
-                .withDisabled(false)
-        ).queueAfter(5, TimeUnit.SECONDS);
-
-
         TextChannel commandChannel = event.getTextChannel();
         String nameFormat = String.format("ticket-%s", user.getName());
 
