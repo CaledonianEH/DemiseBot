@@ -2,6 +2,7 @@ package xyz.caledonian.utils;
 
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Utils {
 
@@ -38,5 +40,9 @@ public class Utils {
         }
 
         return listdata;
+    }
+
+    public static void deleteAfter(Message message, int delay){
+        message.delete().queueAfter(delay, TimeUnit.SECONDS);
     }
 }

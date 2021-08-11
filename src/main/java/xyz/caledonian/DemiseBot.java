@@ -26,6 +26,7 @@ import xyz.caledonian.utils.CustomEmotes;
 import xyz.caledonian.utils.PremadeEmbeds;
 import xyz.caledonian.utils.Utils;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -115,6 +116,7 @@ public class DemiseBot {
         EmbedBuilder eb = new EmbedBuilder();
 
         eb.setTitle("Demise Tickets");
+        eb.setColor(new Color(249, 79, 91));
         eb.setDescription("Click the button to create a ticket, and get in contact with our support team. Make sure to provide a reason when it is first created!" +
                 "\n\n**Reasons to create a ticket**\n- Applications\n- Schedule unavailability notices\n- Report bugs\n");
 
@@ -122,7 +124,7 @@ public class DemiseBot {
         eb.setFooter(getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         channel.sendMessageEmbeds(eb.build())
-                .setActionRow(Button.primary("ticketCreateBtn", "Create a ticket")
+                .setActionRow(Button.success("ticketCreateBtn", "Create a ticket")
                 .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create")))
                 ).queue();
     }

@@ -15,6 +15,7 @@ import xyz.caledonian.DemiseBot;
 import xyz.caledonian.managers.TicketManager;
 import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.PremadeEmbeds;
+import xyz.caledonian.utils.Utils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -66,6 +67,17 @@ public class TicketCommand extends ListenerAdapter {
                             .withDisabled(true)
                     ).queue();
             e.getTextChannel().delete().queue();//
+        }else if(e.getComponentId().equals("ticketCreateBtn")){
+            ticket.createUserTicketButton(e.getUser(), e, e.getGuild());
+            e.getInteraction().editButton(Button.primary("ticketCloseBtn", "Ticket created!")
+                    .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
+                    .withDisabled(true)
+            ).queue();
+
+            e.getInteraction().editButton(Button.success("ticketCloseBtn", "Create a ticket")
+                    .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
+                    .withDisabled(true)
+            ).queueAfter(5, TimeUnit.SECONDS);
         }
     }
 }
