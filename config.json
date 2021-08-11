@@ -2,7 +2,7 @@
   "token": "ODczMDc3NjM1MzE4NzEwMzMy.YQzK6Q.Ql1xmML294R9QAy8pEaFvOZa5dg",
 
   "activity": {
-    "status": "IDLE",
+    "status": "ONLINE",
     "activity": "Angels of Demise"
   },
 
@@ -10,13 +10,13 @@
   "footer-link": "caledonian.xyz",
 
   "channels": {
-    "suggestions": 873280232327618614,
-    "reports": 873344444248776714
+    "suggestions": 874873540258701392,
+    "reports": 874873652942868481
   },
 
   "tickets": {
-    "category": 873747005992730705,
-    "support-role-id": 874704515910217749
+    "category": 769291041638449152,
+    "support-role-id": 769291042562113566
   },
 
   "emotes": {
@@ -27,7 +27,7 @@
   },
 
   "development": {
-    "discord-id": "873072369416175697",
+    "discord-id": "484825424032038913",
     "developers": [
       "377594849760772117",
       "467805961596305410",
