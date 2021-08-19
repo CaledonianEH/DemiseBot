@@ -93,6 +93,12 @@ public class Commands extends ListenerAdapter {
                         "ticket", "Create a support ticket, and directly interact with our team"
         )).queue();
 
+        // BW COMMANDS *----------*----------*----------*
+        commands.addCommands(new CommandData(
+                "map", "Create a support ticket, and directly interact with our team"
+        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of").addChoice("map1", "1"))
+        ).queue();
+
 
         commands.queue();
         globalCommands.queue();
