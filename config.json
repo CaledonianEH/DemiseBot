@@ -27,6 +27,51 @@
     "create": "<:create:874802883776876624>"
   },
 
+  "hypixel-maps": {
+    "solo":{
+      "airshow": 0,
+      "lighthouse": 0,
+      "toro": 0,
+      "acropolis": 0,
+      "amazon": 0,
+      "apollo": 0,
+      "biohazard": 0,
+      "cascade": 0,
+      "cliffside": 0,
+      "crogorm": 0,
+      "glacier": 0,
+      "hollow": 0,
+      "lightstone": 0,
+      "lotus": 0,
+      "meso": 0,
+      "orchestra": 0,
+      "rooftop": 0,
+      "rooted": 0,
+      "siege": 0,
+      "skyrise": 0,
+      "speedway": 0,
+      "waterfall": 0,
+      "zarzul": 0
+    },
+    "fours": {
+      "aquarium": 0,
+      "catalyst": 0,
+      "boardwalk": 0,
+      "sharkattack": 0,
+      "archway": 0,
+      "carapace": 0,
+      "dreamgrove": 0,
+      "eastwood": 0,
+      "enchanted": 0,
+      "extinction": 0,
+      "holmgang": 0,
+      "horizon": 0,
+      "invasion": 0,
+      "jurassic": 0,
+      "katsu": 0
+    }
+  },
+
   "development": {
     "discord-id": "484825424032038913",
     "developers": [
