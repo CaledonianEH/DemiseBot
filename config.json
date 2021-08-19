@@ -29,17 +29,17 @@
 
   "hypixel-maps": {
     "solo":{
-      "airshow": 0,
+      "airshow": 100,
       "lighthouse": 0,
       "toro": 0,
       "acropolis": 0,
-      "amazon": 0,
+      "amazon": 93,
       "apollo": 0,
       "biohazard": 0,
       "cascade": 0,
       "cliffside": 0,
       "crogorm": 0,
-      "glacier": 0,
+      "glacier": 105,
       "hollow": 0,
       "lightstone": 0,
       "lotus": 0,
@@ -51,7 +51,8 @@
       "skyrise": 0,
       "speedway": 0,
       "waterfall": 0,
-      "zarzul": 0
+      "zarzul": 0,
+      "crypt": 93
     },
     "fours": {
       "aquarium": 0,

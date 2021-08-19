@@ -95,8 +95,8 @@ public class Commands extends ListenerAdapter {
 
         // BW COMMANDS *----------*----------*----------*
         commands.addCommands(new CommandData(
-                "map", "Create a support ticket, and directly interact with our team"
-        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of").addChoice("map1", "1"))
+                "map", "Get the height limit of a specific map"
+        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of"))
         ).queue();
 
 
