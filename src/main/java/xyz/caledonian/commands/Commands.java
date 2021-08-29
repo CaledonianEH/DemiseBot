@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -96,7 +97,8 @@ public class Commands extends ListenerAdapter {
         // BW COMMANDS *----------*----------*----------*
         commands.addCommands(new CommandData(
                 "map", "Get the height limit of a specific map"
-        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of"))
+        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of")
+                .addChoice("test", 1))
         ).queue();
 
 

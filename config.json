@@ -30,7 +30,7 @@
   "hypixel-maps": {
     "solo":{
       "airshow": 100,
-      "lighthouse": 0,
+      "lighthouse": 110,
       "toro": 0,
       "acropolis": 0,
       "amazon": 93,
@@ -51,8 +51,9 @@
       "skyrise": 0,
       "speedway": 0,
       "waterfall": 0,
-      "zarzul": 0,
-      "crypt": 93
+      "zarzul": 141,
+      "crypt": 93,
+      "pernicious": 90
     },
     "fours": {
       "aquarium": 0,
