@@ -168,7 +168,7 @@ public class DemiseBot {
 
     private void sendStartWelcome(){
         System.out.printf("=============================================");
-        System.out.printf("Welcome, %s, to DemiseUtils");
+        System.out.printf("Welcome, %s, to DemiseUtils", jda.getSelfUser().getAsTag());
         System.out.printf("");
         System.out.printf("- Connected to %s guilds, totaling NaN members", jda.getGuilds().size());
         System.out.printf("- Shards: Running");
