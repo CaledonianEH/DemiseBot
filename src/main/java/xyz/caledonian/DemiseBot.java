@@ -111,6 +111,7 @@ public class DemiseBot {
 
         System.out.printf("[BOT] The bot %s is fully running. Took %sms", jda.getSelfUser().getAsTag(), System.currentTimeMillis() - time);
         DevMessageLogger.sendStartupLog();
+        sendStartWelcome();
     }
 
     private void registerEvents(){
