@@ -174,7 +174,6 @@ public class DemiseBot {
         System.out.printf("- Shards: Running");
         System.out.printf("    - Shard count: %s", jda.getShardInfo().getShardTotal());
         System.out.printf("    - Current shard: %s", jda.getShardInfo().getShardId());
-        System.out.printf("    - Avg Gateway Ping: %s", jda.getShardManager().getAverageGatewayPing());
         System.out.printf("=============================================");
     }
 }
