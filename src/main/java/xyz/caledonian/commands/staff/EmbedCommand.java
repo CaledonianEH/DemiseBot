@@ -14,6 +14,7 @@ import xyz.caledonian.DemiseBot;
 import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.Formatting;
 import xyz.caledonian.utils.PremadeEmbeds;
+import xyz.caledonian.utils.Utils;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -118,6 +119,8 @@ public class EmbedCommand extends ListenerAdapter {
             e.replyEmbeds(PremadeEmbeds.success("Successfully sent your update!").build()).queue();
             eraseUserData(user);
         }
+
+        Utils.sendConsoleLog("Sending embed [%s] in %s by %s. ping=%s", message, tc.getName(), e.getUser(), ping);
     }
 
     @SneakyThrows

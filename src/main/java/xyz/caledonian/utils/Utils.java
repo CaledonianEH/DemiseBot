@@ -9,7 +9,9 @@ import org.json.JSONObject;
 import xyz.caledonian.DemiseBot;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -44,5 +46,16 @@ public class Utils {
 
     public static void deleteAfter(Message message, int delay){
         message.delete().queueAfter(delay, TimeUnit.SECONDS);
+    }
+
+    public static String getLogTime(){
+        String timeStamp;
+        timeStamp = new SimpleDateFormat("M/d/yy hh:mm:ss:SSSS z").format(new Date());
+
+        return String.format("[%s] ", timeStamp);
+    }
+
+    public static void sendConsoleLog(String message, Object... components){
+        System.out.printf("%s %s", getLogTime(), String.format(message, components));
     }
 }

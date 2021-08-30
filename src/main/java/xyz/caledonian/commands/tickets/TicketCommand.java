@@ -46,6 +46,7 @@ public class TicketCommand extends ListenerAdapter {
                     Member member = guild.getMember(user);
 
                     ticket.createUserTicket(user, e, guild);
+                    Utils.sendConsoleLog("[TICKET] Created ticket for %s", user.getAsTag());
             }
         }catch (Exception ex){
             e.replyEmbeds(PremadeEmbeds.error(ex.getMessage()).build()).queue();
@@ -70,7 +71,7 @@ public class TicketCommand extends ListenerAdapter {
         }else if(e.getComponentId().equals("ticketCreateBtn")){
             e.deferReply().setEphemeral(true).queue();
             ticket.createUserTicketButton(e.getUser(), e, e.getGuild());
-            System.out.println("[DEBUG] ticket creation button triggered");
+            Utils.sendConsoleLog("[TICKET] Created ticket for %s", e.getUser().getAsTag());
         }
     }
 }
