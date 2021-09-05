@@ -176,6 +176,3 @@ public class DemiseBot {
         System.out.printf("    - Current shard: %s", jda.getShardInfo().getShardId());
         System.out.printf("=============================================");
     }
-}
-
-// need to redeploy
