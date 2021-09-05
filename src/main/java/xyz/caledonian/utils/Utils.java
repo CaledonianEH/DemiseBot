@@ -56,6 +56,6 @@ public class Utils {
     }
 
     public static void sendConsoleLog(String message, Object... components){
-        System.out.printf("%s %s", getLogTime(), String.format(message, components));
+        System.out.printf("%s %s%n", getLogTime(), String.format(message, components));
     }
 }

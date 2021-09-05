@@ -152,7 +152,7 @@ public class DemiseBot {
     public void sendTicketChannel(MessageChannel channel){
         EmbedBuilder eb = new EmbedBuilder();
 
-        eb.setTitle("Demise Tickets");
+        eb.setTitle("Demise Support & Applications");
         eb.setColor(new Color(249, 79, 91));
         eb.setDescription("Click the button to create a ticket, and get in contact with our support team. Make sure to provide a reason when it is first created!" +
                 "\n\n**Reasons to create a ticket**\n- Applications\n- Schedule unavailability notices\n- Report bugs\n");
@@ -162,19 +162,19 @@ public class DemiseBot {
 
         channel.sendMessageEmbeds(eb.build())
                 .setActionRow(Button.success("ticketCreateBtn", "Create a ticket")
-                .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create")))
-                ).queue();
+                .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create"))))
+                .queue();
     }
 
     private void sendStartWelcome(){
-        System.out.printf("=============================================");
-        System.out.printf("Welcome, %s, to DemiseUtils", jda.getSelfUser().getAsTag());
-        System.out.printf("");
-        System.out.printf("- Connected to %s guilds, totaling NaN members", jda.getGuilds().size());
-        System.out.printf("- Shards: Running");
-        System.out.printf("    - Shard count: %s", jda.getShardInfo().getShardTotal());
-        System.out.printf("    - Current shard: %s", jda.getShardInfo().getShardId());
-        System.out.printf("=============================================");
+        System.out.printf("=============================================%n");
+        System.out.printf("Welcome, %s, to DemiseUtils%n", jda.getSelfUser().getAsTag());
+        System.out.printf("%n");
+        System.out.printf("- Connected to %s guilds, totaling NaN members%n", jda.getGuilds().size());
+        System.out.printf("- Shards: Running%n");
+        System.out.printf("    - Shard count: %s%n", jda.getShardInfo().getShardTotal());
+        System.out.printf("    - Current shard: %s%n", jda.getShardInfo().getShardId());
+        System.out.printf("=============================================%n");
     }
 }
 
