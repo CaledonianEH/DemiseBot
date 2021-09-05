@@ -41,29 +41,29 @@ public class DemiseBot {
     private long time = 0;
     private static long startTime;
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         startTime = System.currentTimeMillis();
         new DemiseBot().startBot();
     }
 
     @SneakyThrows
-    public void startBot(){
+    public void startBot() {
         time = System.currentTimeMillis();
         Utils.sendConsoleLog("[BOT] Loading DemiseBot v1.0 by Caledonian");
 
         // Loading configuration to a JSON object
-        try{
+        try {
             Objects.requireNonNull(getConfig()).getString("token");
             Utils.sendConsoleLog("[CFG] Successfully loaded config.json into memory. Took %sms",
                     System.currentTimeMillis() - time);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Utils.sendConsoleLog("[CFG] Failed to find config.json, cannot start bot.");
             return;
         }
 
         Utils.sendConsoleLog("[BOT] Connecting to the bot using the provided token.");
         time = System.currentTimeMillis();
-        try{
+        try {
             JDABuilder builder = JDABuilder.createDefault(getConfig().getString("token"))
                     .setChunkingFilter(ChunkingFilter.ALL)
                     .enableIntents(GatewayIntent.GUILD_MEMBERS)
@@ -77,9 +77,9 @@ public class DemiseBot {
             // .build().awaitReady()
             Utils.sendConsoleLog("[BOT] Successfully connected to %s with a valid token. Took %sms", jda.getSelfUser().getAsTag(),
                     System.currentTimeMillis() - time);
-        }catch (LoginException ex){
+        } catch (LoginException ex) {
             Utils.sendConsoleLog("[BOT] [FAILED] [LoginException] Failed to validate the provided token. Failed in %sms", System.currentTimeMillis() - time);
-        }catch (InterruptedException ex){
+        } catch (InterruptedException ex) {
             Utils.sendConsoleLog("[BOT] [FAILED] [InterruptedExcpetion] Task was interrupted whilst connecting. Failed in %sms", System.currentTimeMillis() - time);
         }
 
@@ -114,7 +114,7 @@ public class DemiseBot {
         sendStartWelcome();
     }
 
-    private void registerEvents(){
+    private void registerEvents() {
         jda.addEventListener(new Commands(this, jda));
         jda.addEventListener(new SuggestCommand(this, jda));
         jda.addEventListener(new ReportCommand(this, jda));
@@ -126,30 +126,30 @@ public class DemiseBot {
     }
 
     public JSONObject getConfig() throws IOException {
-        try{
+        try {
             JSONObject config = new JSONObject(new String(Files.readAllBytes(Paths.get("config.json"))));
             return config;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
     }
 
-    public void updateCommands(){
+    public void updateCommands() {
         Commands commands = new Commands(this, jda);
         commands.setupCommands();
     }
 
-    public void updateStatus(String activity){
+    public void updateStatus(String activity) {
         jda.getPresence().setActivity(Activity.competing(activity));
     }
 
-    public void shutdown(){
+    public void shutdown() {
         jda.shutdown();
     }
 
     @SneakyThrows
-    public void sendTicketChannel(MessageChannel channel){
+    public void sendTicketChannel(MessageChannel channel) {
         EmbedBuilder eb = new EmbedBuilder();
 
         eb.setTitle("Demise Support & Applications");
@@ -162,11 +162,11 @@ public class DemiseBot {
 
         channel.sendMessageEmbeds(eb.build())
                 .setActionRow(Button.success("ticketCreateBtn", "Create a ticket")
-                .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create"))))
+                        .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create"))))
                 .queue();
     }
 
-    private void sendStartWelcome(){
+    private void sendStartWelcome() {
         System.out.printf("=============================================%n");
         System.out.printf("Welcome, %s, to DemiseUtils%n", jda.getSelfUser().getAsTag());
         System.out.printf("%n");
@@ -176,3 +176,4 @@ public class DemiseBot {
         System.out.printf("    - Current shard: %s%n", jda.getShardInfo().getShardId());
         System.out.printf("=============================================%n");
     }
+}
