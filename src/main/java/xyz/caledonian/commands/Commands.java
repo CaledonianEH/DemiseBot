@@ -26,7 +26,7 @@ public class Commands extends ListenerAdapter {
         this.main = main;
         this.jda = jda;
 
-        //setupCommands();
+//        setupCommands();
     }
 
     @SneakyThrows
@@ -93,13 +93,16 @@ public class Commands extends ListenerAdapter {
         commands.addCommands(new CommandData(
                         "ticket", "Create a support ticket, and directly interact with our team"
         )).queue();
-
-        // BW COMMANDS *----------*----------*----------*
         commands.addCommands(new CommandData(
-                "map", "Get the height limit of a specific map"
-        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of")
-                .addChoice("test", 1))
-        ).queue();
+                "apply", "Create an application to our guild"
+        )).queue();
+
+//        // BW COMMANDS *----------*----------*----------*
+//        commands.addCommands(new CommandData(
+//                "map", "Get the height limit of a specific map"
+//        ).addOptions(new OptionData(OptionType.STRING, "map", "The map you wish to get the height of")
+//                .addChoice("test", 1))
+//        ).queue();
 
 
         commands.queue();

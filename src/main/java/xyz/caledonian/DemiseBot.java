@@ -16,14 +16,17 @@ import org.json.JSONObject;
 import xyz.caledonian.commands.developer.EvalCommand;
 import xyz.caledonian.commands.punishments.BanCommand;
 import xyz.caledonian.commands.staff.EmbedCommand;
+import xyz.caledonian.commands.tickets.ApplicationCommand;
 import xyz.caledonian.commands.tickets.TicketCommand;
 import xyz.caledonian.commands.user.ReportCommand;
 import xyz.caledonian.commands.user.SuggestCommand;
 import xyz.caledonian.commands.Commands;
 import xyz.caledonian.listener.GuildJoinListener;
+import xyz.caledonian.managers.ApplicationManager;
 import xyz.caledonian.managers.TicketManager;
 import xyz.caledonian.privmsgs.DevMessageLogger;
 import xyz.caledonian.utils.CustomEmotes;
+import xyz.caledonian.utils.GuildRoles;
 import xyz.caledonian.utils.PremadeEmbeds;
 import xyz.caledonian.utils.Utils;
 
@@ -38,6 +41,7 @@ public class DemiseBot {
 
     private JDA jda;
     private TicketManager ticket;
+    private ApplicationManager application;
     private long time = 0;
     private static long startTime;
 
@@ -94,7 +98,9 @@ public class DemiseBot {
         Utils.sendConsoleLog("[BOT] Registering command classes");
         time = System.currentTimeMillis();
         new Utils(this, jda);
+        new GuildRoles(this, jda);
         ticket = new TicketManager(this, jda);
+        application = new ApplicationManager(this, jda);
         new DevMessageLogger(this, jda);
         new CustomEmotes(this, jda);
         new PremadeEmbeds(this, jda);
@@ -122,6 +128,7 @@ public class DemiseBot {
         jda.addEventListener(new BanCommand(this, jda));
         jda.addEventListener(new EvalCommand(this, jda));
         jda.addEventListener(new TicketCommand(this, jda, ticket));
+        jda.addEventListener(new ApplicationCommand(this, jda, application));
         jda.addEventListener(new GuildJoinListener(this, jda));
     }
 
