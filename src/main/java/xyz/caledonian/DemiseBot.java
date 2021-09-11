@@ -162,14 +162,18 @@ public class DemiseBot {
         eb.setTitle("Demise Support & Applications");
         eb.setColor(new Color(249, 79, 91));
         eb.setDescription("Click the button to create a ticket, and get in contact with our support team. Make sure to provide a reason when it is first created!" +
-                "\n\n**Reasons to create a ticket**\n- Applications\n- Schedule unavailability notices\n- Report bugs\n");
+                "\n\n**Reasons to create a ticket**\n- Applications\n- Schedule unavailability notices\n- Report bugs\n\n**Applications**\n- Make sure you meet guild requirements\n- If you do, click the apply button\n-Then, fill out all of the provided info\n- Wait for a response. You may be put on a wait list, should the guild be full");
 
         eb.setThumbnail(jda.getSelfUser().getAvatarUrl());
         eb.setFooter(getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
 
         channel.sendMessageEmbeds(eb.build())
-                .setActionRow(Button.success("ticketCreateBtn", "Create a ticket")
-                        .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create"))))
+                .setActionRow(
+                        Button.success("ticketCreateBtn", "Create a ticket")
+                        .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create"))),
+                        Button.primary("applicationCreateBtn", "Apply to Demise")
+                                .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create")))
+                )
                 .queue();
     }
 

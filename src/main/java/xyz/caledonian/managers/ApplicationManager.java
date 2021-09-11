@@ -64,7 +64,7 @@ public class ApplicationManager {
     @SneakyThrows
     public void createUserApplicationButton(User user, ButtonClickEvent event, Guild guild){
         TextChannel commandChannel = event.getTextChannel();
-        String nameFormat = String.format("ticket-%s", user.getName());
+        String nameFormat = String.format("application-%s", user.getName());
 
         if(guild.getCategoryById(getTicketCategoryString()) == null){
             event.getHook().sendMessageEmbeds(PremadeEmbeds.warning("The requested application channel was not found.").build()).setEphemeral(true).queue();
@@ -93,16 +93,22 @@ public class ApplicationManager {
                                 .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                         , Button.success("applicationAcceptBtn", "Accept Application")
                                 .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("create")))).queue();
+
+        ticket.sendMessageEmbeds(PremadeEmbeds.success("**Angels of Demise Application**\nThanks for applying to Angels of Demise. Please enter your information, using the information below." +
+                "\n\n`` 1. `` **IGN / Username:**\n`` 2. `` **Network level:**\n`` 3. `` **Timezone:**\n`` 4. `` **Age:**\n`` 5. `` **Bedwars stats, Wins & FKDR:**\n`` 6. `` **Link to Plancke Stats:**\n`` 7. `` **Playtime / Day:**")
+                .build())
+                .setActionRow(Button.link("https://hypixel.net/threads/angels-of-demise-demise-bedwars-25-guild-level-138-79-bedwars-wins-applications-open.4528422/", "Forum Post")
+                        .withEmoji(Emoji.fromMarkdown("<:hypixel:885741628768284673>"))).queue();
         return;
     }
 
     @SneakyThrows
     public Category getTicketCategory(){
-        return jda.getCategoryById(main.getConfig().getJSONObject("tickets").getLong("category"));
+        return jda.getCategoryById(main.getConfig().getJSONObject("tickets").getLong("application-category"));
     }
     @SneakyThrows
     public String getTicketCategoryString(){
-        return String.valueOf(main.getConfig().getJSONObject("tickets").getLong("category"));
+        return String.valueOf(main.getConfig().getJSONObject("tickets").getLong("application-category"));
     }
 
     @SneakyThrows

@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
 import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.Button;
+import net.dv8tion.jda.api.managers.ChannelManager;
 import xyz.caledonian.DemiseBot;
 import xyz.caledonian.managers.ApplicationManager;
 import xyz.caledonian.managers.TicketManager;
@@ -72,7 +73,20 @@ public class ApplicationCommand extends ListenerAdapter {
                 e.getHook().sendMessageEmbeds(PremadeEmbeds.warning("You are not allowed to accept this application. You must be an admin.").build()).setEphemeral(true).queue();
             }
         }else if(e.getComponentId().equals("applicationAcceptBtn")) {
-
+            e.deferEdit().queue();
+            if(e.getMember().getRoles().contains(GuildRoles.support())){
+                e.deferReply().queue();
+                e.getTextChannel().getManager().setName(String.format("accepted-%s", e.getUser().getName())).queue();
+                e.getHook().editOriginalEmbeds(PremadeEmbeds.success("This application has been accepted. Do not close this application.").build())
+                        .setActionRow(
+                                Button.success("applicationAcceptBtn", "Application Accepted")
+                                        .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("create"))).withDisabled(true)
+                                , Button.danger("applicationDenyBtn", "Delete Application")
+                                        .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close"))).withDisabled(false)
+                        ).queue();
+            }else{
+                e.getHook().sendMessageEmbeds(PremadeEmbeds.warning("You are not allowed to accept this application. You must be an admin.").build()).setEphemeral(true).queue();
+            }
         }else if(e.getComponentId().equals("applicationCreateBtn")){
             e.deferReply().setEphemeral(true).queue();
             ticket.createUserApplicationButton(e.getUser(), e, e.getGuild());
