@@ -1,6 +1,7 @@
 package xyz.caledonian.commands.tickets;
 
 import lombok.SneakyThrows;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Emoji;
 import net.dv8tion.jda.api.entities.Guild;
@@ -15,9 +16,13 @@ import xyz.caledonian.DemiseBot;
 import xyz.caledonian.managers.ApplicationManager;
 import xyz.caledonian.managers.TicketManager;
 import xyz.caledonian.privmsgs.DevMessageLogger;
+import xyz.caledonian.utils.Formatting;
 import xyz.caledonian.utils.GuildRoles;
 import xyz.caledonian.utils.PremadeEmbeds;
 import xyz.caledonian.utils.Utils;
+
+import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class ApplicationCommand extends ListenerAdapter {
 
@@ -63,12 +68,15 @@ public class ApplicationCommand extends ListenerAdapter {
         if(e.getComponentId().equalsIgnoreCase("applicationDenyBtn")){
             e.deferEdit().queue();
             if(e.getMember().getRoles().contains(GuildRoles.support())){
-                e.getHook().editOriginalEmbeds(PremadeEmbeds.success("Currently closing the application... please wait").build())
+                e.getHook().editOriginalEmbeds(PremadeEmbeds.success(String.format("This application was closed on %s, by %s.\nIt will be automatically deleted in three days.",
+                                Formatting.getTimeFormat(), e.getUser())).build())
                         .setActionRow(Button.danger("ticketCloseBtn", "Deny Application")
                                 .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                                 .withDisabled(true)
                         ).queue();
-                e.getTextChannel().delete().queue();
+                String currentName = e.getTextChannel().getName();
+                e.getTextChannel().getManager().setName(currentName.replace("application", "denied")).queue();
+                e.getTextChannel().delete().queueAfter(3, TimeUnit.DAYS);
             }else{
                 e.getHook().sendMessageEmbeds(PremadeEmbeds.warning("You are not allowed to accept this application. You must be an admin.").build()).setEphemeral(true).queue();
             }
@@ -84,6 +92,9 @@ public class ApplicationCommand extends ListenerAdapter {
                                 , Button.danger("applicationDenyBtn", "Delete Application")
                                         .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close"))).withDisabled(false)
                         ).queue();
+
+                e.getChannel().sendMessage(String.format("%s", Formatting.getTimeFormat()))
+                        .setEmbeds(accepted(e.getUser()).build()).queue();
             }else{
                 e.getHook().sendMessageEmbeds(PremadeEmbeds.warning("You are not allowed to accept this application. You must be an admin.").build()).setEphemeral(true).queue();
             }
@@ -92,5 +103,20 @@ public class ApplicationCommand extends ListenerAdapter {
             ticket.createUserApplicationButton(e.getUser(), e, e.getGuild());
             Utils.sendConsoleLog("[TICKET] Created ticket for %s", e.getUser().getAsTag());
         }
+    }
+
+    @SneakyThrows
+    private EmbedBuilder accepted(User user){
+        EmbedBuilder eb = new EmbedBuilder();
+
+        eb.setTitle("Application Accepted!");
+        eb.setColor(new Color(61, 216, 143));
+        eb.setDescription(String.format("This application has been accepted by %s, on %s. Please confirm you have your messages open.\n\nWe will be contacting you soon for more information." +
+                "\nFrom the entire Demise Guild, Congratulations.",
+                user.getAsMention(), Formatting.getTimeFormat()));
+        eb.setThumbnail("https://i.imgur.com/fKjkvDX.png");
+        eb.setFooter(main.getConfig().getString("footer-link"), user.getAvatarUrl());
+
+        return eb;
     }
 }
