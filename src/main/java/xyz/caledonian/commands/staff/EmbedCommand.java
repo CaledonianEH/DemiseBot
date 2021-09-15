@@ -70,6 +70,7 @@ public class EmbedCommand extends ListenerAdapter {
                             .addActionRow(SelectionMenu.create("embedCmdSel")
                                     .addOption("Announcement", "embedCmdAnn", Emoji.fromMarkdown("<a:blobDance:807671473060839475>"))
                                     .addOption("Update", "embedCmdUpd", Emoji.fromMarkdown("<a:blobDance:807671473060839475>"))
+                                    .addOption("Information", "embedCmdInf", Emoji.fromMarkdown("<a:blobDance:807671473060839475>"))
                                     .setPlaceholder("Choose your announcement type")
                             .build()).setEphemeral(true).queue();
 
@@ -98,7 +99,6 @@ public class EmbedCommand extends ListenerAdapter {
         if(!(userTextChannelMap.containsKey(user)
         && userMessageMap.containsKey(user)
         && userPingMap.containsKey(user))){
-            System.out.println("does not contain user");
             return;
         }
 
@@ -106,45 +106,61 @@ public class EmbedCommand extends ListenerAdapter {
         String message = userMessageMap.get(user);
         boolean ping = userPingMap.get(user);
         if(e.getValues().get(0).equals("embedCmdAnn")){
-            System.out.println("got the right selection");
             if(ping){tc.sendMessage("@here").queue();}
-            sendAnnouncement(tc, message);
-
-            e.replyEmbeds(PremadeEmbeds.success("Successfully sent your announcement!").build()).queue();
-            eraseUserData(user);
+            sendAnnouncement(tc, message, user);
         }else if(e.getValues().get(0).equals("embedCmdUpd")){
             if(ping){tc.sendMessage("@here").queue();}
-            sendUpdate(tc, message);
-
-            e.replyEmbeds(PremadeEmbeds.success("Successfully sent your update!").build()).queue();
-            eraseUserData(user);
+            sendUpdate(tc, message, user);
+        }else if(e.getValues().get(0).equals("embedCmdInf")){
+            if(ping){tc.sendMessage("@here").queue();}
+            sendInfo(tc, message, user);
         }
 
+        e.replyEmbeds(PremadeEmbeds.success(String.format("Hey, %s. Your embed was successfully sent in %s\n\nSent on %s"
+                , user.getAsMention(), userMessageMap.get(user), Formatting.getTimeFormat())).build()).queue();
+        eraseUserData(user);
         Utils.sendConsoleLog("Sending embed [%s] in %s by %s. ping=%s", message, tc.getName(), e.getUser(), ping);
     }
 
     @SneakyThrows
-    private void sendAnnouncement(TextChannel tc, String message){
+    private void sendAnnouncement(TextChannel tc, String message, User user){
         EmbedBuilder eb = new EmbedBuilder();
 
         eb.setTitle("New announcement!");
         eb.setColor(new Color(255, 64, 64));
         eb.setDescription(message);
         //eb.setThumbnail(user.getAvatarUrl());
-        eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
+        eb.setFooter(main.getConfig().getString("footer-link"), user.getAvatarUrl());
 
-        tc.sendMessageEmbeds(eb.build()).queue();
+        tc.sendMessage(String.format("Sent by %s at %s", user.getAsMention(), Formatting.getTimeFormat())).setEmbeds(
+                eb.build()
+        ).queue();
     }
 
     @SneakyThrows
-    private void sendUpdate(TextChannel tc, String message){
+    private void sendUpdate(TextChannel tc, String message, User user){
         EmbedBuilder eb = new EmbedBuilder();
 
         eb.setTitle("New update!");
         eb.setColor(new Color(64, 140, 255));
         eb.setDescription(message);
         //eb.setThumbnail(user.getAvatarUrl());
-        eb.setFooter(main.getConfig().getString("footer-link"), "https://i.imgur.com/xIIl8Np.png");
+        eb.setFooter(main.getConfig().getString("footer-link"), user.getAvatarUrl());
+
+        tc.sendMessage(String.format("Sent by %s at %s", user.getAsMention(), Formatting.getTimeFormat())).setEmbeds(
+                eb.build()
+        ).queue();
+    }
+
+    @SneakyThrows
+    private void sendInfo(TextChannel tc, String message, User user){
+        EmbedBuilder eb = new EmbedBuilder();
+
+        eb.setTitle("Guild Information");
+        eb.setColor(new Color(107, 21, 229));
+        eb.setDescription(message);
+        //eb.setThumbnail(user.getAvatarUrl());
+        eb.setFooter(main.getConfig().getString("footer-link"), user.getAvatarUrl());
 
         tc.sendMessageEmbeds(eb.build()).queue();
     }
