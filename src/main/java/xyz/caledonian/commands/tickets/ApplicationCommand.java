@@ -72,11 +72,16 @@ public class ApplicationCommand extends ListenerAdapter {
                                 Formatting.getTimeFormat(), e.getUser())).build())
                         .setActionRow(Button.danger("ticketCloseBtn", "Deny Application")
                                 .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
-                                .withDisabled(true)
+                                .withDisabled(true),
+                                Button.danger("applicationDenyBtn", "Delete Application")
+                                        .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close")))
                         ).queue();
                 String currentName = e.getTextChannel().getName();
                 e.getTextChannel().getManager().setName(currentName.replace("application", "denied")).queue();
-                e.getTextChannel().delete().queueAfter(3, TimeUnit.DAYS);
+
+                e.getChannel().sendMessage(String.format("%s", Formatting.getTimeFormat()))
+                        .setEmbeds(accepted(e.getUser()).build()).queue();
+                e.getTextChannel().delete().queueAfter(1, TimeUnit.DAYS);
             }else{
                 e.getHook().sendMessageEmbeds(PremadeEmbeds.warning("You are not allowed to accept this application. You must be an admin.").build()).setEphemeral(true).queue();
             }
@@ -84,7 +89,8 @@ public class ApplicationCommand extends ListenerAdapter {
             e.deferEdit().queue();
             if(e.getMember().getRoles().contains(GuildRoles.support())){
                 e.deferReply().queue();
-                e.getTextChannel().getManager().setName(String.format("accepted-%s", e.getUser().getName())).queue();
+                String currentName = e.getTextChannel().getName();
+                e.getTextChannel().getManager().setName(currentName.replace("application", "accepted")).queue();
                 e.getHook().editOriginalEmbeds(PremadeEmbeds.success("This application has been accepted. Do not close this application.").build())
                         .setActionRow(
                                 Button.success("applicationAcceptBtn", "Application Accepted")
@@ -113,6 +119,20 @@ public class ApplicationCommand extends ListenerAdapter {
         eb.setColor(new Color(61, 216, 143));
         eb.setDescription(String.format("This application has been accepted by %s, on %s. Please confirm you have your messages open.\n\nWe will be contacting you soon for more information." +
                 "\nFrom the entire Demise Guild, Congratulations.",
+                user.getAsMention(), Formatting.getTimeFormat()));
+        eb.setThumbnail("https://i.imgur.com/fKjkvDX.png");
+        eb.setFooter(main.getConfig().getString("footer-link"), user.getAvatarUrl());
+
+        return eb;
+    }
+
+    @SneakyThrows
+    private EmbedBuilder denied(User user){
+        EmbedBuilder eb = new EmbedBuilder();
+
+        eb.setTitle("Application Denied!");
+        eb.setColor(new Color(242, 78, 78));
+        eb.setDescription(String.format("This application has been denied by %s, on %s. Please confirm you have your messages open.\n\nYou can re-apply once you meet requirements.",
                 user.getAsMention(), Formatting.getTimeFormat()));
         eb.setThumbnail("https://i.imgur.com/fKjkvDX.png");
         eb.setFooter(main.getConfig().getString("footer-link"), user.getAvatarUrl());
