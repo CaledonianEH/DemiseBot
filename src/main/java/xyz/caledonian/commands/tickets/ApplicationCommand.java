@@ -63,7 +63,6 @@ public class ApplicationCommand extends ListenerAdapter {
     @SneakyThrows
     @Override
     public void onButtonClick(ButtonClickEvent e){
-        System.out.println("button press");
         System.out.println(e.getComponentId());
         if(e.getComponentId().equalsIgnoreCase("applicationDenyBtn")){
             e.deferEdit().queue();
@@ -80,7 +79,7 @@ public class ApplicationCommand extends ListenerAdapter {
                 e.getTextChannel().getManager().setName(currentName.replace("application", "denied")).queue();
 
                 e.getChannel().sendMessage(String.format("%s", Formatting.getTimeFormat()))
-                        .setEmbeds(accepted(e.getUser()).build()).queue();
+                        .setEmbeds(denied(e.getUser()).build()).queue();
                 e.getTextChannel().delete().queueAfter(1, TimeUnit.DAYS);
             }else{
                 e.getHook().sendMessageEmbeds(PremadeEmbeds.warning("You are not allowed to accept this application. You must be an admin.").build()).setEphemeral(true).queue();
@@ -95,7 +94,7 @@ public class ApplicationCommand extends ListenerAdapter {
                         .setActionRow(
                                 Button.success("applicationAcceptBtn", "Application Accepted")
                                         .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("create"))).withDisabled(true)
-                                , Button.danger("applicationDenyBtn", "Delete Application")
+                                , Button.danger("ticketCloseBtn", "Delete Application")
                                         .withEmoji(Emoji.fromMarkdown(main.getConfig().getJSONObject("emotes").getString("close"))).withDisabled(false)
                         ).queue();
 
