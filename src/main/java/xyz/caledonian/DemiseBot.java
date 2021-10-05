@@ -171,7 +171,7 @@ public class DemiseBot {
                 .setActionRow(
                         Button.success("ticketCreateBtn", "Create a ticket")
                         .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create"))),
-                        Button.primary("applicationCreateBtn", "Apply to Demise")
+                        Button.primary("applicationCreateBtn", "Apply to Rise")
                                 .withEmoji(Emoji.fromMarkdown(getConfig().getJSONObject("emotes").getString("create")))
                 )
                 .queue();
