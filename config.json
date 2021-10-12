@@ -2,12 +2,12 @@
   "token": "ODczMDc3NjM1MzE4NzEwMzMy.YQzK6Q.Ql1xmML294R9QAy8pEaFvOZa5dg",
 
   "activity": {
-    "status": "ONLINE",
-    "activity": "Rise of the fallen"
+    "status": "DO_NOT_DISTURB",
+    "activity": "Rise of the Fallen"
   },
 
   "support-discord": "https://caledonian.xyz/",
-  "footer-link": "Rise of the Fallen",
+  "footer-link": "caledonian.xyz",
 
   "channels": {
     "suggestions": 874873540258701392,
@@ -80,9 +80,7 @@
     "discord-id": "484825424032038913",
     "developers": [
       "377594849760772117",
-      "467805961596305410",
-      "351132215700357131",
-      "208952626656706560"
+      "467805961596305410"
     ]
   }
 }
