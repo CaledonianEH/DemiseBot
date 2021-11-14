@@ -1,86 +1,39 @@
 {
-  "token": "ODczMDc3NjM1MzE4NzEwMzMy.YQzK6Q.Ql1xmML294R9QAy8pEaFvOZa5dg",
+  "token": "",
 
   "activity": {
     "status": "DO_NOT_DISTURB",
-    "activity": "Rise of the Fallen"
+    "activity": "caledonian.xyz"
   },
 
   "support-discord": "https://caledonian.xyz/",
   "footer-link": "caledonian.xyz",
 
   "channels": {
-    "suggestions": 874873540258701392,
-    "reports": 874873652942868481,
-    "welcome": 484834644760592387
+    "suggestions": ,
+    "reports": ,
+    "welcome": 
   },
 
   "tickets": {
-    "category": 769291041638449152,
-    "application-category": 886108853421346937,
-    "support-role-id": 769291042562113566,
-    "application-role-id": 769291042562113566
+    "category": ,
+    "application-category": ,
+    "support-role-id": ,
+    "application-role-id": 
   },
 
   "emotes": {
-    "no": "873287193811124274",
-    "yes": "873287193051930667",
-    "close": "<:close:874730745430700083>",
-    "create": "<:create:874802883776876624>"
-  },
-
-  "hypixel-maps": {
-    "solo":{
-      "airshow": 100,
-      "lighthouse": 110,
-      "toro": 0,
-      "acropolis": 0,
-      "amazon": 93,
-      "apollo": 0,
-      "biohazard": 0,
-      "cascade": 0,
-      "cliffside": 0,
-      "crogorm": 0,
-      "glacier": 105,
-      "hollow": 0,
-      "lightstone": 0,
-      "lotus": 0,
-      "meso": 0,
-      "orchestra": 0,
-      "rooftop": 0,
-      "rooted": 0,
-      "siege": 0,
-      "skyrise": 0,
-      "speedway": 0,
-      "waterfall": 0,
-      "zarzul": 141,
-      "crypt": 93,
-      "pernicious": 90
-    },
-    "fours": {
-      "aquarium": 0,
-      "catalyst": 0,
-      "boardwalk": 0,
-      "sharkattack": 0,
-      "archway": 0,
-      "carapace": 0,
-      "dreamgrove": 0,
-      "eastwood": 0,
-      "enchanted": 0,
-      "extinction": 0,
-      "holmgang": 0,
-      "horizon": 0,
-      "invasion": 0,
-      "jurassic": 0,
-      "katsu": 0
-    }
+    "no": "",
+    "yes": "",
+    "close": "",
+    "create": ""
   },
 
   "development": {
-    "discord-id": "484825424032038913",
+    "discord-id": "",
     "developers": [
-      "377594849760772117",
-      "467805961596305410"
+      "",
+      ""
     ]
   }
 }
