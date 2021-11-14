@@ -1,34 +1,13 @@
 <div id="top"></div>
-<!-- PROJECT SHIELDS -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Demise Discord Bot</h3>
 
   <p align="center">
-    project_description
+    A user-friendly discord bot built for Hypixel guilds, utalizing the latest features available. <b>(NO LONGER UPDATED)</b>
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
+    <a href="https://wiki.caledonian.xyz/demise"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </div>
 
@@ -52,8 +31,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -65,9 +42,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+This is a discord bot powered by JDA that was built to manage support, applications, suggestions, and reports.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -75,14 +50,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Java](https://www.java.com/en/)
+* [JDA (Discord Java Application)](https://github.com/DV8FromTheWorld/JDA)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -91,36 +60,30 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This plugin is relitivly easy to setup, despite being time-consuming. 
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+This repository was created for deployment on [Railway](https://railway.app/), and is the suggested hosting provider.
+* Not endorsed by [Railway](https://railway.app/) or told to promote (But I still am because its really cool)
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+**1.** Obtain a Discord bot token
+  Visit the [Developer Portal](https://discord.com/developers/applications), and create a new application. Head into the "bot" tab, and click "Create a Bot", then copy the token. Input your token into the json string, found in your ``config-example.json``
+  
+  ```json
+    "token": "your token here",
+  ```
+
+**2.** Copy & Paste the Guild ID, channels, and emotes, to make sure that every config entry is used.
+
+**3.** Deploy however you wish, though I personally suggest [Railway](https://railway.app/), as it was designed for deployment.
+
+**Railway Deployment**
+Clone or fork this repository, then create a new project on [Railway](https://railway.app/), linking your newly created repository. Everything _should_ work as expected.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -131,55 +94,19 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [] Feature 1
-- [] Feature 2
-- [] Feature 3
-    - [] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the GNU 3.0 License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Caledonian - [Caledonian#1000](https://discord.com) - cal@caledonian.xyz
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/CaledonianEH/DemiseBot](https://github.com/CaledonianEH/DemiseBot)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -188,26 +115,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* **This project is no longer updated, and will not recieve any major support, bug fixes, or security patches.**
+    * Though I highly encurrage further contributuons. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
